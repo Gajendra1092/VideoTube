@@ -1,0 +1,120 @@
+# ===================================
+# VideoTube Project .gitignore
+# ===================================
+
+# Environment Variables (CRITICAL - NEVER COMMIT THESE!)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.env
+
+# Environment templates are OK to commit
+!.env.template
+!.env.production.template
+!.env.example
+
+# Node.js Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build Outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Cache Directories
+.cache/
+.parcel-cache/
+.npm/
+.yarn/
+.pnp.*
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Reports
+coverage/
+*.lcov
+.nyc_output/
+
+# Temporary Files
+tmp/
+temp/
+
+# Database Files (if any local DBs)
+*.sqlite
+*.sqlite3
+*.db
+
+# Cloudinary/Upload Temp Files
+uploads/
+temp-uploads/
+
+# Production Build Artifacts
+*.tgz
+*.tar.gz
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint Cache
+.eslintcache
+
+# Prettier Cache
+.prettiercache
+
+# Testing
+test-results/
+playwright-report/
+coverage/
+
+# Deployment
+.vercel/
+.netlify/
+.railway/
+
+# Local Development
+.local/
+.dev/
+
+# Backup Files
+*.backup
+*.bak
+*.orig
+
+# Documentation Build
+docs/build/
+
+# Storybook
+storybook-static/

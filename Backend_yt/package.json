@@ -1,0 +1,37 @@
+{
+  "name": "backend_yt",
+  "version": "1.0.0",
+  "description": "Backend for a video streaming website.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
+    "start": "node -r dotenv/config src/index.js",
+    "build": "echo 'No build step required for Node.js'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "javascript",
+    "backend"
+  ],
+  "author": "Gajendra Nehra",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.1"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.6.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1",
+    "mongoose-aggregate-paginate-v2": "^1.1.4",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2"
+  }
+}
