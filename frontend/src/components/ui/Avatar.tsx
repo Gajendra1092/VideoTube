@@ -5,7 +5,7 @@ interface AvatarProps {
   src?: string
   alt?: string
   name?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   className?: string
   onClick?: () => void
 }
@@ -14,10 +14,12 @@ const Avatar = ({ src, alt, name = '', size = 'md', className, onClick }: Avatar
   const [imageError, setImageError] = useState(false)
 
   const sizeClasses = {
+    xs: 'w-6 h-6 text-xs',
     sm: 'w-8 h-8 text-xs',
     md: 'w-10 h-10 text-sm',
     lg: 'w-12 h-12 text-base',
-    xl: 'w-16 h-16 text-lg'
+    xl: 'w-16 h-16 text-lg',
+    '2xl': 'w-20 h-20 text-2xl'
   }
 
   const initials = name

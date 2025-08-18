@@ -25,6 +25,17 @@ export interface User {
   watchHistory: string[];
   googleId?: string;
   isEmailVerified?: boolean;
+  description?: string;
+  businessEmail?: string;
+  location?: string;
+  socialLinks?: {
+    website?: string;
+    twitter?: string;
+    instagram?: string;
+    facebook?: string;
+    linkedin?: string;
+    youtube?: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -107,6 +118,10 @@ export interface Playlist {
   description: string;
   owner: User | string;
   videos: Video[] | string[];
+  privacy?: 'public' | 'private' | 'unlisted';
+  thumbnail?: string;
+  videoCount?: number;
+  firstVideoThumbnail?: string;
   createdAt: string;
   updatedAt: string;
 }
