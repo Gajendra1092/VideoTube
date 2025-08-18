@@ -75,7 +75,7 @@ export const useAuthStore = create<ExtendedAuthState>()(
 
 
           // Check for both 'success' and 'sucess' (backend typo) and also check status
-          if ((response.success || response.sucess) && response.data && response.data.loggedInUser) {
+          if (response.success && response.data && (response.data as any).loggedInUser) {
             const user = response.data.loggedInUser;
             set({
               user,

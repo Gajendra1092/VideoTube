@@ -2,8 +2,5 @@
 
 // Node.js types for browser environment
 declare namespace NodeJS {
-  interface Timeout {
-    ref(): this;
-    unref(): this;
-  }
+  type Timeout = number;
 }

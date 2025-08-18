@@ -251,6 +251,7 @@ export const QUERY_KEYS = {
   WATCH_LATER: 'watch-later',
   SAVED_VIDEOS: 'saved-videos',
   VIDEO_INTERACTION_STATUS: 'video-interaction-status',
+  VIDEO_FORMATS: 'video-formats',
   USER_PLAYLISTS_FOR_VIDEO: 'user-playlists-for-video',
   WATCH_HISTORY: 'watch-history',
   // Admin
