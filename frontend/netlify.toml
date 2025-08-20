@@ -2,7 +2,7 @@
 
 [build]
   # Build command
-  command = "npm install && npm run build"
+  command = "npm ci && npx vite build"
   
   # Directory to publish
   publish = "dist"
