@@ -37,6 +37,7 @@ const uploadOnCloudinary = async (localFilePath) => {
          //upload the file on cloudinary using normalized path
          const response = await cloudinary.uploader.upload(normalizedPath, {
             resource_type: 'auto',
+            secure: true
          })
 
          // file has been uploaded successfully.
