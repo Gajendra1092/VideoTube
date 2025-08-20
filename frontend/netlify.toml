@@ -8,7 +8,7 @@
   publish = "dist"
   
   # Base directory for build
-  base = "backend/frontend"
+  base = "frontend"
 
 [build.environment]
   # Node.js version
