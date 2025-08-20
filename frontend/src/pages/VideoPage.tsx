@@ -4,10 +4,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   ThumbsUp,
   ThumbsDown,
-  Share,
-  Download,
-  Flag,
-  MoreHorizontal,
   Bell,
   BellOff
 } from 'lucide-react'
@@ -20,7 +16,7 @@ import Avatar from '@/components/ui/Avatar'
 import Button from '@/components/ui/Button'
 import { toast } from 'react-hot-toast'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
-import VideoCard from '@/components/video/VideoCard'
+
 import CommentSection from '@/components/video/CommentSection'
 import VideoActionsMenu from '@/components/video/VideoActionsMenu'
 
@@ -69,13 +65,7 @@ const VideoPage = () => {
       return apiService.getUserChannelProfile(owner?.username!)
     },
     enabled: !!owner?.username,
-    onSuccess: (data) => {
-      console.log('📊 VideoPage channelData received:', {
-        isSubscribed: data?.data?.isSubscribed,
-        subscribersCount: data?.data?.subscribersCount,
-        username: data?.data?.username
-      })
-    }
+
   })
 
   // Like video mutation

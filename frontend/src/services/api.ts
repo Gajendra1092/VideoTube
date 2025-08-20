@@ -497,7 +497,7 @@ class ApiService {
 
   async downloadVideo(videoId: string, format: string = 'mp4', quality: string = 'original') {
     const params = new URLSearchParams({ format, quality });
-    const url = `${this.baseURL}/download/file/${videoId}?${params}`;
+    const url = `${this.api.defaults.baseURL}/download/file/${videoId}?${params}`;
 
     try {
       // Fetch the file as a blob

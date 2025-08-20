@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Search, Filter, SortAsc, SortDesc, Grid, List, Users, Video as VideoIcon } from 'lucide-react'
@@ -8,11 +8,11 @@ import Button from '@/components/ui/Button'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import VideoCard from '@/components/video/VideoCard'
 import ChannelCard from '@/components/channel/ChannelCard'
-import toast from 'react-hot-toast'
+
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const navigate = useNavigate()
+
 
   // Get search query from URL
   const query = searchParams.get('q') || ''
@@ -49,7 +49,7 @@ const SearchPage = () => {
       sortOrder
     }),
     enabled: !!query && query.trim() !== '',
-    keepPreviousData: true
+    placeholderData: (previousData) => previousData
   })
 
   const results = searchResults?.data || {

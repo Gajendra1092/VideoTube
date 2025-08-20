@@ -6,6 +6,14 @@ export interface ApiResponse<T = any> {
   success: boolean;
 }
 
+// Utility type for unknown API responses
+export type UnknownApiResponse = {
+  data?: any;
+  status?: number;
+  message?: string;
+  success?: boolean;
+}
+
 export interface ApiError {
   statusCode: number;
   message: string;
@@ -204,6 +212,178 @@ export interface ChannelStats {
   totalViews: number;
   totalSubscribers: number;
   totalLikes: number;
+}
+
+// Channel Types
+export interface Channel {
+  _id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  avatar: string;
+  coverImage?: string;
+  description?: string;
+  subscribersCount: number;
+  totalVideos: number;
+  totalViews?: number;
+  isSubscribed?: boolean;
+  videos?: Video[];
+  createdAt: string;
+  updatedAt: string;
+  businessEmail?: string;
+  location?: string;
+  socialLinks?: {
+    website?: string;
+    twitter?: string;
+    instagram?: string;
+    facebook?: string;
+    linkedin?: string;
+    youtube?: string;
+  };
+}
+
+// Video Interaction Types
+export interface VideoInteractionStatus {
+  isLiked: boolean;
+  isDisliked: boolean;
+  likeCount: number;
+  dislikeCount: number;
+  isInWatchLater: boolean;
+  isSaved: boolean;
+}
+
+// Playlist Data Types
+export interface PlaylistData {
+  _id: string;
+  title: string;
+  description: string;
+  owner: User;
+  videos: Video[];
+  privacy: 'public' | 'private' | 'unlisted';
+  thumbnail?: string;
+  videoCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Search Types
+export interface SearchSuggestion {
+  _id: string;
+  text: string;
+  type: 'query' | 'channel' | 'video';
+}
+
+export interface SearchResults {
+  videos: Video[];
+  channels: Channel[];
+  totalResults: number;
+  pagination: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+// Download Types
+export interface DownloadFormat {
+  quality: string;
+  format: string;
+  size: string;
+  url: string;
+}
+
+// Pagination Types
+export interface PaginatedResponse<T> {
+  docs: T[];
+  totalDocs: number;
+  limit: number;
+  page: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  nextPage?: number;
+  prevPage?: number;
+}
+
+// Watch History Types
+export interface WatchHistoryItem {
+  _id: string;
+  video: Video;
+  watchedAt: string;
+  watchDuration?: number;
+}
+
+// API Response Types for specific endpoints
+export interface VideosResponse {
+  video: Video[];
+  pagination?: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+export interface PlaylistsResponse {
+  playlists: Playlist[];
+  pagination?: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+export interface SubscriptionsResponse {
+  subscriptions: SubscribedChannel[];
+  pagination?: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+export interface WatchHistoryResponse {
+  watchHistory: WatchHistoryItem[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+export interface SearchSuggestionsResponse {
+  suggestions: SearchSuggestion[];
+}
+
+export interface VideoFormatsResponse {
+  formats: DownloadFormat[];
+  title: string;
+}
+
+export interface ChannelResponse {
+  _id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  avatar: string;
+  coverImage?: string;
+  description?: string;
+  subscribersCount: number;
+  totalVideos: number;
+  totalViews?: number;
+  isSubscribed: boolean;
+  videos?: Video[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 // Theme Types

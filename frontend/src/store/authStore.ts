@@ -2,7 +2,17 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import toast from 'react-hot-toast';
 import { apiService } from '@/services/api';
-import { User, LoginCredentials, RegisterData, GoogleOAuthData, AuthState } from '@/types';
+import { User, LoginCredentials, RegisterData, GoogleOAuthData, AuthState, ApiResponse } from '@/types';
+
+interface LoginResponse {
+  loggedInUser: User;
+}
+
+interface RegisterResponse {
+  loggedInUser: User;
+  isExistingUser: boolean;
+  isNewUser: boolean;
+}
 
 interface ExtendedAuthState extends AuthState {
   initializeAuth: () => Promise<void>;
@@ -29,8 +39,8 @@ export const useAuthStore = create<ExtendedAuthState>()(
 
           const response = await apiService.login(credentials);
 
-          if (response.success && response.data.loggedInUser) {
-            const user = response.data.loggedInUser;
+          if (response.success && (response as ApiResponse<LoginResponse>).data.loggedInUser) {
+            const user = (response as ApiResponse<LoginResponse>).data.loggedInUser;
             set({
               user,
               isAuthenticated: true,
