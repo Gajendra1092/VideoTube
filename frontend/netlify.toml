@@ -11,8 +11,8 @@
   base = "frontend"
 
 [build.environment]
-  # Node.js version
-  NODE_VERSION = "18"
+  # Node.js version - UPDATED TO 20
+  NODE_VERSION = "20"
   
   # NPM version
   NPM_VERSION = "9"
