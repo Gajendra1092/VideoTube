@@ -2,12 +2,6 @@
 
 A modern, full-stack video streaming platform built with Node.js, React, and MongoDB. Features comprehensive video management, social interactions, and a beautiful responsive interface.
 
-## 🎬 Live Demo
-
-**Frontend**: http://localhost:3000  
-**Backend API**: http://localhost:5000  
-**Documentation**: See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
-
 ## ✨ Key Features
 
 ### 🔐 Authentication & User Management
