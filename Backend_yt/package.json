@@ -10,7 +10,8 @@
     "build": "echo 'No build step required for Node.js'",
     "test": "echo 'No tests specified'",
     "seed-test-data": "node scripts/runSeeder.js",
-    "clean-test-data": "node scripts/cleanTestData.js"
+    "clean-test-data": "node scripts/cleanTestData.js",
+    "clean-orphaned-videos": "node scripts/cleanOrphanedVideos.js"
   },
   "keywords": [
     "javascript",

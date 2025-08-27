@@ -133,6 +133,7 @@ const searchVideosInternal = async (query, page = 1, limit = 20, sortBy = 'relev
         {
             $addFields: {
                 owner: { $first: "$owner" },
+                hasValidOwner: { $gt: [{ $size: "$owner" }, 0] },
                 // Calculate relevance score
                 relevanceScore: {
                     $add: [
@@ -144,6 +145,11 @@ const searchVideosInternal = async (query, page = 1, limit = 20, sortBy = 'relev
                         { $divide: ["$view", 1000] }
                     ]
                 }
+            }
+        },
+        {
+            $match: {
+                hasValidOwner: true
             }
         },
         {

@@ -47,18 +47,13 @@ const getAllVideos = asyncHandler(async (req, res) => {
         },
         {
             $addFields: {
-                owner: {
-                    $cond: {
-                        if: { $eq: [{ $size: "$owner" }, 0] },
-                        then: {
-                            _id: null,
-                            username: "deleted_user",
-                            fullName: "Deleted User",
-                            avatar: null
-                        },
-                        else: { $first: "$owner" }
-                    }
-                }
+                owner: { $first: "$owner" },
+                hasValidOwner: { $gt: [{ $size: "$owner" }, 0] }
+            }
+        },
+        {
+            $match: {
+                hasValidOwner: true
             }
         },
         {
@@ -74,6 +69,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
                 owner: 1,
                 createdAt: 1,
                 updatedAt: 1
+                // hasValidOwner field is excluded from final output
             }
         },
         { $sort: sort },
@@ -81,7 +77,28 @@ const getAllVideos = asyncHandler(async (req, res) => {
         { $limit: parseInt(limit) }
     ]);
 
-    const totalVideos = await Video.countDocuments(matchFilter);
+    // Count only videos with valid owners for accurate pagination
+    const totalVideosResult = await Video.aggregate([
+        { $match: matchFilter },
+        {
+            $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner"
+            }
+        },
+        {
+            $match: {
+                "owner.0": { $exists: true }
+            }
+        },
+        {
+            $count: "total"
+        }
+    ]);
+
+    const totalVideos = totalVideosResult.length > 0 ? totalVideosResult[0].total : 0;
 
     // Debug logging (removed sensitive data)
 
@@ -181,7 +198,13 @@ const getVideoById = asyncHandler(async (req, res) => {
         },
         {
             $addFields: {
-                owner: { $first: "$owner" }
+                owner: { $first: "$owner" },
+                hasValidOwner: { $gt: [{ $size: "$owner" }, 0] }
+            }
+        },
+        {
+            $match: {
+                hasValidOwner: true
             }
         },
         {
