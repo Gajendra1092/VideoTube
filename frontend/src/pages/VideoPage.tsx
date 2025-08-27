@@ -73,6 +73,7 @@ const VideoPage = () => {
     mutationFn: () => apiService.toggleVideoLike(videoId!),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.VIDEO_INTERACTION_STATUS, videoId] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LIKED_VIDEOS] })
     },
   })
 
@@ -81,6 +82,7 @@ const VideoPage = () => {
     mutationFn: () => apiService.toggleVideoDislike(videoId!),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.VIDEO_INTERACTION_STATUS, videoId] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LIKED_VIDEOS] })
     },
   })
 
@@ -245,14 +247,8 @@ const VideoPage = () => {
 
   const handleSubscribe = () => {
     if (!isAuthenticated) {
-      console.log('❌ Not authenticated - cannot subscribe')
       return
     }
-    console.log('🔄 VideoPage handleSubscribe called:', {
-      ownerId: owner._id,
-      currentSubscriptionStatus: channelData?.data?.isSubscribed,
-      subscribersCount: channelData?.data?.subscribersCount
-    })
     subscribeMutation.mutate()
   }
 

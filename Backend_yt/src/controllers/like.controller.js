@@ -13,7 +13,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
         throw new ApiError(400,"Give video and user info!")
     }
 
-    console.log('🔄 Toggling video like:', { videoId, userId });
+    // Toggling video like for authenticated user
 
     // Check for existing like or dislike
     const existingInteraction = await Like.findOne({
@@ -25,7 +25,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
         if (existingInteraction.type === 'like') {
             // Remove like
             await existingInteraction.deleteOne();
-            console.log('✅ Video unliked successfully');
+            // Video unliked successfully
             return res.status(200).json(
                 new ApiResponse(200, { action: 'unliked' }, "Unliked successfully!")
             );
@@ -33,24 +33,16 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
             // Change dislike to like
             existingInteraction.type = 'like';
             await existingInteraction.save();
-            console.log('✅ Video dislike changed to like');
+            // Video dislike changed to like
             return res.status(200).json(
                 new ApiResponse(200, { action: 'liked', changed: 'dislike_to_like' }, "Liked successfully!")
             );
         }
     }
 
-    // Create new like using a completely different approach
+    // Create new like
     try {
-        // First, delete ALL existing likes/dislikes for this user to avoid any conflicts
-        await Like.deleteMany({
-            likedBy: userId
-        });
-
-        // Wait a moment to ensure deletion is complete
-        await new Promise(resolve => setTimeout(resolve, 100));
-
-        // Now create the new like
+        // Create the new like for this specific video
         const likeDocument = new Like({
             likedBy: userId,
             video: videoId,
@@ -79,7 +71,7 @@ const toggleVideoDislike = asyncHandler(async (req, res) => {
         throw new ApiError(400,"Give video and user info!")
     }
 
-    console.log('🔄 Toggling video dislike:', { videoId, userId });
+    // Toggling video dislike for authenticated user
 
     // Check for existing like or dislike
     const existingInteraction = await Like.findOne({
@@ -91,7 +83,7 @@ const toggleVideoDislike = asyncHandler(async (req, res) => {
         if (existingInteraction.type === 'dislike') {
             // Remove dislike
             await existingInteraction.deleteOne();
-            console.log('✅ Video undisliked successfully');
+            // Video undisliked successfully
             return res.status(200).json(
                 new ApiResponse(200, { action: 'undisliked' }, "Undisliked successfully!")
             );
@@ -99,24 +91,16 @@ const toggleVideoDislike = asyncHandler(async (req, res) => {
             // Change like to dislike
             existingInteraction.type = 'dislike';
             await existingInteraction.save();
-            console.log('✅ Video like changed to dislike');
+            // Video like changed to dislike
             return res.status(200).json(
                 new ApiResponse(200, { action: 'disliked', changed: 'like_to_dislike' }, "Disliked successfully!")
             );
         }
     }
 
-    // Create new dislike using a completely different approach
+    // Create new dislike
     try {
-        // First, delete ALL existing likes/dislikes for this user to avoid any conflicts
-        await Like.deleteMany({
-            likedBy: userId
-        });
-
-        // Wait a moment to ensure deletion is complete
-        await new Promise(resolve => setTimeout(resolve, 100));
-
-        // Now create the new dislike
+        // Create the new dislike for this specific video
         const dislikeDocument = new Like({
             likedBy: userId,
             video: videoId,
@@ -159,17 +143,9 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
         );
     }
 
-    // Create new comment like using a completely different approach
+    // Create new comment like
     try {
-        // First, delete ALL existing likes/dislikes for this user to avoid any conflicts
-        await Like.deleteMany({
-            likedBy: userId
-        });
-
-        // Wait a moment to ensure deletion is complete
-        await new Promise(resolve => setTimeout(resolve, 100));
-
-        // Now create the new like
+        // Create the new like for this specific comment
         const likeDocument = new Like({
             likedBy: userId,
             comment: commentId,
@@ -225,17 +201,9 @@ const toggleCommentDislike = asyncHandler(async (req, res) => {
         type: 'like'
     });
 
-    // Create new comment dislike using a completely different approach
+    // Create new comment dislike
     try {
-        // First, delete ALL existing likes/dislikes for this user to avoid any conflicts
-        await Like.deleteMany({
-            likedBy: userId
-        });
-
-        // Wait a moment to ensure deletion is complete
-        await new Promise(resolve => setTimeout(resolve, 100));
-
-        // Now create the new dislike
+        // Create the new dislike for this specific comment
         const dislikeDocument = new Like({
             likedBy: userId,
             comment: commentId,
