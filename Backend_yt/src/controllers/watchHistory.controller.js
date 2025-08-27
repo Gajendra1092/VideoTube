@@ -191,11 +191,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
     const hasNextPage = pageNum < totalPages;
     const hasPrevPage = pageNum > 1;
 
-    console.log('✅ Watch history fetched successfully:', {
-      count: watchHistory.length,
-      totalCount,
-      totalPages
-    });
+    // Watch history fetched successfully
 
     return res.status(200).json(
       new ApiResponse(200, {
@@ -220,12 +216,12 @@ const getWatchHistory = asyncHandler(async (req, res) => {
 const getWatchHistoryStats = asyncHandler(async (req, res) => {
   const userId = req.user?._id;
 
-  console.log('📊 Fetching watch history stats for user:', userId.toString());
+  // Fetching watch history stats for authenticated user
 
   try {
     const stats = await WatchHistory.getUserStats(userId);
 
-    console.log('✅ Watch history stats fetched successfully:', stats);
+    // Watch history stats fetched successfully
 
     return res.status(200).json(
       new ApiResponse(200, stats, "Watch history statistics fetched successfully")

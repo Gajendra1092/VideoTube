@@ -382,7 +382,7 @@ const getVideoInteractionStatus = asyncHandler(async (req, res) => {
         dislikeCount
     };
 
-    console.log('✅ Video interaction status fetched successfully');
+    // Video interaction status fetched successfully
 
     return res.status(200).json(new ApiResponse(200, status, "Video interaction status fetched successfully!"));
 });

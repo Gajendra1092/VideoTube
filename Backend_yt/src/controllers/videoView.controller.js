@@ -21,7 +21,7 @@ const recordVideoView = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Authentication required to record video view");
     }
 
-    // Recording video view for authenticated user
+    // Recording video view for authenticated user (removed sensitive logging)
 
     if (!videoId || !mongoose.Types.ObjectId.isValid(videoId)) {
         throw new ApiError(400, "Valid video ID is required");
@@ -42,7 +42,7 @@ const recordVideoView = asyncHandler(async (req, res) => {
         });
 
         if (existingView) {
-            console.log('👁️ User has already viewed this video');
+            // User has already viewed this video
             return res.status(200).json(
                 new ApiResponse(200, { alreadyViewed: true }, "View already recorded")
             );

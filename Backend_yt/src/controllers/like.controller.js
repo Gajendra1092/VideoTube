@@ -387,19 +387,7 @@ const getLikedVideos = asyncHandler(async (req, res) => {
         type: 'like'
     });
 
-    // Debug: Log aggregation results for troubleshooting
-    if (process.env.NODE_ENV === 'development') {
-        console.log('🔍 Debug - Liked videos query results:', {
-            userId: userId,
-            totalFound: likedVideos.length,
-            totalCount: totalCount,
-            sampleResult: likedVideos[0] ? {
-                hasVideo: !!likedVideos[0].video,
-                videoTitle: likedVideos[0].video?.title,
-                likedAt: likedVideos[0].likedAt
-            } : null
-        });
-    }
+    // Liked videos fetched successfully
 
     return res.status(200).json(new ApiResponse(200, {
         videos: likedVideos,
