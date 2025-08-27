@@ -117,3 +117,7 @@ docs/build/
 
 # Storybook
 storybook-static/
+
+# Test Data Generation Scripts (DO NOT COMMIT)
+Backend_yt/scripts/
+!Backend_yt/scripts/README.md
