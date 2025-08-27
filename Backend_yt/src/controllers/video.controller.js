@@ -13,7 +13,7 @@ function extractPublicId(url) {
 }
 
 const getAllVideos = asyncHandler(async (req, res) => {
-    const { page = 1, limit = 10, query, sortBy = 'createdAt', sortType = 'desc', userId } = req.query
+    const { page = 1, limit = 30, query, sortBy = 'createdAt', sortType = 'desc', userId } = req.query
 
     const matchFilter = { isPublished: true }; // Only show published videos
     if (userId) {

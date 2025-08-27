@@ -16,15 +16,29 @@ dotenv.config();
 
 // Sample data arrays for realistic content generation
 const sampleUsernames = [
+    // Tech Content Creators
     'CodeMasterPro', 'DevTechAcademy', 'FullStackDev', 'ReactExpert', 'NodeJSGuru',
     'PythonMaster', 'DataSciencePro', 'CloudArchitect', 'DevOpsEngineer', 'CyberSecPro',
     'MLEngineer', 'WebDevTutor', 'SoftwareEngineer', 'TechEducator', 'ProgrammingHub',
     'CodeWithJohn', 'TechMentorAI', 'DevSkillsUp', 'CodingBootcamp', 'TechCareerPath',
     'AdvancedCoding', 'ProDeveloper', 'TechInnovator', 'CodeAcademy', 'DevMasterclass',
-    'TechTutorials', 'CodingExpert', 'SoftwareDev', 'TechTraining', 'DevCommunity'
+
+    // Entertainment Content Creators
+    'EntertainmentHub', 'GOTAnalyst', 'SeriesReviewer', 'MovieCritic', 'PopCulturePro',
+    'CelebInsider', 'FilmBreakdown', 'TVShowExpert', 'WesterosWatcher', 'DragonsAndMore',
+    'FantasyFanatic', 'EpicScenes', 'CharacterStudy', 'PlotAnalysis', 'CinemaSecrets',
+
+    // Music Content Creators
+    'MusicMaster', 'BeatMaker', 'GuitarGuru', 'VocalCoach', 'MusicProducer',
+    'SongAnalysis', 'InstrumentPro', 'MusicTheory', 'StudioSecrets', 'AudioEngineer',
+
+    // VideoTube & Gajendra branded channels
+    'VideoTubeOfficial', 'GajendraCreates', 'VideoTubeTech', 'GajendraReviews', 'VideoTubeMusic',
+    'GajendraEntertainment', 'VideoTubeEducation', 'GajendraAnalysis', 'VideoTubeStudio'
 ];
 
 const sampleVideoTitles = [
+    // Tech Content (60 videos)
     'Complete Full-Stack Web Development Course 2024',
     'Advanced React.js Patterns and Best Practices',
     'Node.js & Express.js Backend Development Masterclass',
@@ -44,10 +58,62 @@ const sampleVideoTitles = [
     'Responsive Web Design with CSS Grid & Flexbox',
     'Testing Strategies: Unit, Integration & E2E',
     'Performance Optimization for Web Applications',
-    'Cybersecurity Fundamentals for Developers'
+    'Cybersecurity Fundamentals for Developers',
+    'Redis Caching Strategies for High Performance',
+    'Serverless Architecture with AWS Lambda',
+    'Vue.js 3 Composition API Deep Dive',
+    'Next.js 14 App Router Complete Guide',
+    'PostgreSQL Advanced Query Optimization',
+    'Kubernetes Deployment Strategies',
+    'Machine Learning with TensorFlow',
+    'Flutter Cross-Platform Development',
+    'Blockchain Development with Solidity',
+    'API Security Best Practices',
+
+    // Game of Thrones Content (15 videos)
+    'Game of Thrones Season 8 Final Analysis',
+    'Top 10 GOT Battle Scenes Ranked by VideoTube',
+    'Character Arcs: From Stark to Targaryen',
+    'The Red Wedding: Breaking Down the Shocking Scene',
+    'Daenerys Targaryen: Rise and Fall Analysis',
+    'Jon Snow vs Night King: Epic Battle Breakdown',
+    'Game of Thrones Prophecies Explained',
+    'House Stark Family Tree Complete Guide',
+    'Dragons in Westeros: Complete History',
+    'Tyrion Lannister: Best Quotes and Moments',
+    'Game of Thrones Ending: What Went Wrong?',
+    'Arya Stark: Assassin Training Journey',
+    'The Iron Throne: Power Struggles Explained',
+    'Cersei Lannister: Villain or Victim?',
+    'Gajendra Reviews: GOT vs House of Dragon',
+
+    // Music Content (12 videos)
+    'Top Billboard Hits 2024 Analysis by Gajendra',
+    'Music Production Masterclass: Beat Making',
+    'Guitar Techniques for Beginners',
+    'Vocal Training: From Amateur to Pro',
+    'Music Theory Fundamentals Explained',
+    'Studio Recording Techniques by VideoTube',
+    'Electronic Music Production Guide',
+    'Piano Lessons: Classical to Modern',
+    'Songwriting: Lyrics and Melody Creation',
+    'Audio Mixing and Mastering Tutorial',
+    'Music Industry: How to Get Discovered',
+    'Live Performance Tips for Musicians',
+
+    // Additional Entertainment (8 videos)
+    'Marvel vs DC: Ultimate Movie Analysis',
+    'Celebrity Interview: Behind the Scenes',
+    'Pop Culture Trends 2024 by Gajendra',
+    'Movie Reviews: Latest Blockbusters',
+    'Netflix Series Recommendations',
+    'Hollywood Gossip and News Update',
+    'VideoTube Entertainment Weekly Roundup',
+    'Award Shows: Best and Worst Moments'
 ];
 
 const sampleDescriptions = [
+    // Tech Descriptions
     'Master modern web development with this comprehensive course covering frontend, backend, and deployment strategies. Perfect for developers looking to advance their careers.',
     'Learn industry-standard practices and advanced patterns used by top tech companies. Includes real-world projects and code examples.',
     'Build production-ready applications with best practices for scalability, security, and performance optimization.',
@@ -57,12 +123,37 @@ const sampleDescriptions = [
     'Industry expert shares proven strategies and methodologies used in top tech companies.',
     'Complete walkthrough with source code, documentation, and deployment instructions included.',
     'Advanced concepts explained simply with practical demonstrations and best practices.',
-    'Professional development course designed for career advancement and skill enhancement.'
+    'Professional development course designed for career advancement and skill enhancement.',
+
+    // Entertainment Descriptions
+    'Dive deep into the world of Westeros with detailed analysis and behind-the-scenes insights. Join millions of fans in exploring the epic fantasy series.',
+    'Breaking down the most memorable moments and characters from your favorite shows and movies. Entertainment analysis at its finest.',
+    'From shocking plot twists to character development, we explore what makes great storytelling. Perfect for entertainment enthusiasts.',
+    'Join Gajendra and the VideoTube team as we analyze the latest trends in pop culture and entertainment industry.',
+    'Exclusive interviews, behind-the-scenes content, and in-depth reviews of the hottest entertainment topics.',
+    'Your ultimate destination for entertainment news, reviews, and analysis. Subscribe for weekly updates!',
+
+    // Music Descriptions
+    'Learn professional music production techniques used by industry experts. From beginner to advanced level tutorials.',
+    'Master your instrument with step-by-step lessons and practice exercises. Perfect for musicians of all skill levels.',
+    'Discover the secrets of music theory and composition. Enhance your musical knowledge and creativity.',
+    'Professional audio engineering and music production tips from Gajendra and the VideoTube music team.',
+    'Everything you need to know about the music industry, from recording to distribution and promotion.'
 ];
 
 const videoCategories = [
+    // Tech Categories
     'Web Development', 'Software Engineering', 'Data Science', 'DevOps', 'Mobile Development',
-    'Cloud Computing', 'Machine Learning', 'Cybersecurity', 'Database Design', 'System Design'
+    'Cloud Computing', 'Machine Learning', 'Cybersecurity', 'Database Design', 'System Design',
+    'Programming', 'Technology', 'Coding Tutorial', 'Tech Review',
+
+    // Entertainment Categories
+    'Game of Thrones', 'TV Shows', 'Movie Reviews', 'Entertainment', 'Pop Culture',
+    'Celebrity', 'Series Analysis', 'Fantasy', 'Drama', 'Action',
+
+    // Music Categories
+    'Music', 'Music Production', 'Instruments', 'Vocal Training', 'Music Theory',
+    'Audio Engineering', 'Live Performance', 'Songwriting', 'Electronic Music'
 ];
 
 // Cloudinary sample images (public domain)
@@ -119,7 +210,7 @@ const connectDB = async () => {
 };
 
 // Generate test users
-const generateUsers = async (count = 35) => {
+const generateUsers = async (count = 50) => {
     console.log(`🔄 Generating ${count} test users...`);
     const users = [];
     const hashedPassword = await bcrypt.hash('testpassword123', 10);
@@ -145,7 +236,7 @@ const generateUsers = async (count = 35) => {
 };
 
 // Generate test videos
-const generateVideos = async (users, count = 90) => {
+const generateVideos = async (users, count = 125) => {
     console.log(`🔄 Generating ${count} test videos...`);
     const videos = [];
 
@@ -154,14 +245,32 @@ const generateVideos = async (users, count = 90) => {
         const title = getRandomElement(sampleVideoTitles);
         const category = getRandomElement(videoCategories);
         
+        // Determine content type and adjust metrics accordingly
+        const isEntertainment = title.includes('Game of Thrones') || title.includes('GOT') ||
+                               title.includes('Marvel') || title.includes('Celebrity') ||
+                               title.includes('Movie') || title.includes('Netflix');
+        const isMusic = title.includes('Music') || title.includes('Guitar') ||
+                       title.includes('Piano') || title.includes('Beat') ||
+                       title.includes('Vocal') || title.includes('Audio');
+
+        // Set realistic view counts based on content type
+        let viewCount;
+        if (isEntertainment) {
+            viewCount = getRandomNumber(200000, 1200000); // Entertainment gets higher views
+        } else if (isMusic) {
+            viewCount = getRandomNumber(150000, 800000); // Music content moderate views
+        } else {
+            viewCount = getRandomNumber(50000, 600000); // Tech content varies widely
+        }
+
         const video = {
             videoFile: getRandomElement(sampleVideoUrls),
             thumbnail: getRandomElement(sampleThumbnails),
-            title: `${title}`,
-            description: `${getRandomElement(sampleDescriptions)} This comprehensive ${category.toLowerCase()} tutorial includes source code, practical exercises, and real-world examples. Perfect for developers at all levels.`,
-            duration: getRandomNumber(300, 7200), // 5 minutes to 2 hours (more realistic for tech content)
-            view: getRandomNumber(1000, 500000), // Higher view counts for professional demo
-            isPublished: Math.random() > 0.05, // 95% published
+            title: title,
+            description: `${getRandomElement(sampleDescriptions)} ${isEntertainment ? 'Join the VideoTube community for more entertainment content!' : isMusic ? 'Subscribe to Gajendra\'s music channel for more tutorials!' : 'Perfect for developers and tech enthusiasts. Created by the VideoTube team.'}`,
+            duration: getRandomNumber(300, 7200), // 5 minutes to 2 hours
+            view: viewCount,
+            isPublished: Math.random() > 0.03, // 97% published
             owner: owner._id,
             createdAt: getRandomDate(new Date(2023, 0, 1), new Date()),
         };
