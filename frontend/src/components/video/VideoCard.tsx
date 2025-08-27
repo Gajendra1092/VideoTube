@@ -107,10 +107,10 @@ const VideoCard = ({ video, viewMode = 'grid', showIndex = false, index, classNa
       {/* Video info */}
       <div className="flex space-x-3">
         {/* Channel avatar */}
-        <Link to={`/channel/${owner.username}`} className="flex-shrink-0">
+        <Link to={`/channel/${owner?.username || 'unknown'}`} className="flex-shrink-0">
           <Avatar
-            src={owner.avatar}
-            name={owner.fullName}
+            src={owner?.avatar}
+            name={owner?.fullName || 'Unknown User'}
             size="sm"
             className="hover:opacity-80 transition-opacity"
           />
@@ -125,10 +125,10 @@ const VideoCard = ({ video, viewMode = 'grid', showIndex = false, index, classNa
           </Link>
 
           <Link
-            to={`/channel/${owner.username}`}
+            to={`/channel/${owner?.username || 'unknown'}`}
             className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mt-1 block"
           >
-            {owner.fullName}
+            {owner?.fullName || 'Unknown User'}
           </Link>
 
           <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1 space-x-2">

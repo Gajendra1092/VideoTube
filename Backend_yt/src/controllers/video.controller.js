@@ -47,7 +47,18 @@ const getAllVideos = asyncHandler(async (req, res) => {
         },
         {
             $addFields: {
-                owner: { $first: "$owner" }
+                owner: {
+                    $cond: {
+                        if: { $eq: [{ $size: "$owner" }, 0] },
+                        then: {
+                            _id: null,
+                            username: "deleted_user",
+                            fullName: "Deleted User",
+                            avatar: null
+                        },
+                        else: { $first: "$owner" }
+                    }
+                }
             }
         },
         {

@@ -266,6 +266,9 @@ export const useAuthStore = create<ExtendedAuthState>()(
         } catch (error: any) {
           console.log('❌ Auth initialization failed:', error.message);
           // If getCurrentUser fails, user is not authenticated
+          // Clear all auth data including localStorage to prevent infinite loops
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
           // Don't show error toast during initialization to avoid spam
           set({
             user: null,
