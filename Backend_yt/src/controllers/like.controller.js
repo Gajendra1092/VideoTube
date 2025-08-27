@@ -7,7 +7,7 @@ import NotificationService from "../services/notification.service.js"
 
 const toggleVideoLike = asyncHandler(async (req, res) => {
     const {videoId} = req.params
-    const userId = req.user._id.toString();
+    const userId = req.user._id;
 
     if(!videoId && !userId){
         throw new ApiError(400,"Give video and user info!")
@@ -53,7 +53,6 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
         await likeDocument.save();
 
-        console.log('✅ Video liked successfully');
         res.status(200).json(new ApiResponse(200, { action: 'liked' }, "Like successful!"))
     } catch (error) {
         console.error('Error creating video like:', error);
@@ -65,7 +64,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
 const toggleVideoDislike = asyncHandler(async (req, res) => {
     const {videoId} = req.params
-    const userId = req.user._id.toString();
+    const userId = req.user._id;
 
     if(!videoId && !userId){
         throw new ApiError(400,"Give video and user info!")
@@ -111,7 +110,6 @@ const toggleVideoDislike = asyncHandler(async (req, res) => {
 
         await dislikeDocument.save();
 
-        console.log('✅ Video disliked successfully');
         res.status(200).json(new ApiResponse(200, { action: 'disliked' }, "Dislike successful!"))
     } catch (error) {
         console.error('Error creating video dislike:', error);

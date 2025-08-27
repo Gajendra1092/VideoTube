@@ -60,6 +60,11 @@ const CommentSection = ({ videoId }: CommentSectionProps) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMMENTS, videoId] })
       reset()
       setShowCommentForm(false)
+      toast.success('Comment added successfully!')
+    },
+    onError: (error) => {
+      console.error('Comment submission error:', error)
+      toast.error('Failed to add comment. Please try again.')
     },
   })
 

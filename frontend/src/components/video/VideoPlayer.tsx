@@ -52,11 +52,14 @@ const VideoPlayer = ({ src, poster, title, autoPlay = false, className, onTimeUp
 
       // Call the onTimeUpdate callback if provided and we have duration
       if (onTimeUpdateRef.current && videoDuration > 0) {
-        console.log('🎥 VideoPlayer calling onTimeUpdate:', { currentTime, duration: videoDuration, hasCallback: !!onTimeUpdateRef.current })
         onTimeUpdateRef.current(currentTime, videoDuration)
       }
     }
-    const updateDuration = () => setDuration(video.duration)
+    const updateDuration = () => {
+      if (video && !isNaN(video.duration)) {
+        setDuration(video.duration)
+      }
+    }
     const handlePlay = () => setIsPlaying(true)
     const handlePause = () => setIsPlaying(false)
     const handleEnded = () => setIsPlaying(false)
