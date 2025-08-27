@@ -9,10 +9,9 @@
 .env.test
 .env.production
 *.env
+.env.*
 
-# Environment templates are OK to commit
-!.env.template
-!.env.production.template
+# Environment templates and examples are OK to commit
 !.env.example
 
 # Node.js Dependencies
