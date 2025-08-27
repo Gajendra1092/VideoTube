@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { cn, generateAvatarColor } from '@/utils'
+import { cn, generateAvatarColor, ensureHttpsUrl } from '@/utils'
 
 interface AvatarProps {
   src?: string
@@ -34,7 +34,7 @@ const Avatar = ({ src, alt, name = '', size = 'md', className, onClick }: Avatar
   if (src && !imageError) {
     return (
       <img
-        src={src}
+        src={ensureHttpsUrl(src)}
         alt={alt || name}
         className={cn(
           'rounded-full object-cover',

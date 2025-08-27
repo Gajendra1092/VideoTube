@@ -117,8 +117,8 @@ const publishAVideo = asyncHandler(async (req, res) => {
     const video = await Video.create({
          title,
          description,
-         videoFile: videoFile?.url, // maybe here i will use public id sometime. 
-         thumbnail: thumbnail?.url,
+         videoFile: videoFile?.secure_url || videoFile?.url, // Use secure_url for HTTPS
+         thumbnail: thumbnail?.secure_url || thumbnail?.url, // Use secure_url for HTTPS
          duration: videoFile?.duration,
          owner: req.user._id,
     })

@@ -167,13 +167,30 @@ export function generateAvatarColor(name: string): string {
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
     '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
   ];
-  
+
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);
   }
-  
+
   return colors[Math.abs(hash) % colors.length];
+}
+
+// Ensure Cloudinary URLs use HTTPS (fix mixed content issues)
+export function ensureHttpsUrl(url: string): string {
+  if (!url) return url;
+
+  // Convert HTTP Cloudinary URLs to HTTPS
+  if (url.startsWith('http://res.cloudinary.com/')) {
+    return url.replace('http://', 'https://');
+  }
+
+  // Convert any HTTP URL to HTTPS for production
+  if (url.startsWith('http://') && window.location.protocol === 'https:') {
+    return url.replace('http://', 'https://');
+  }
+
+  return url;
 }
 
 // Format file size

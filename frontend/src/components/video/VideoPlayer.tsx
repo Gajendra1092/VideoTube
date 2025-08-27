@@ -10,7 +10,7 @@ import {
   SkipBack,
   SkipForward
 } from 'lucide-react'
-import { cn, formatDuration } from '@/utils'
+import { cn, formatDuration, ensureHttpsUrl } from '@/utils'
 
 interface VideoPlayerProps {
   src: string
@@ -176,8 +176,8 @@ const VideoPlayer = ({ src, poster, title, autoPlay = false, className, onTimeUp
     >
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={ensureHttpsUrl(src)}
+        poster={poster ? ensureHttpsUrl(poster) : undefined}
         className="w-full h-full"
         autoPlay={autoPlay}
         onClick={togglePlay}

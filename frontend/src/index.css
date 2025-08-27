@@ -376,4 +376,46 @@
   .safe-right {
     padding-right: env(safe-area-inset-right);
   }
+
+  /* Modern Forced Colors Mode Support (replaces deprecated -ms-high-contrast) */
+  @media (forced-colors: active) {
+    .btn-primary {
+      background-color: ButtonText;
+      color: ButtonFace;
+      border: 1px solid ButtonText;
+    }
+
+    .btn-secondary {
+      background-color: ButtonFace;
+      color: ButtonText;
+      border: 1px solid ButtonText;
+    }
+
+    .card {
+      background-color: Canvas;
+      border: 1px solid CanvasText;
+      color: CanvasText;
+    }
+
+    .nav-link.active {
+      background-color: Highlight;
+      color: HighlightText;
+    }
+
+    .text-primary {
+      color: CanvasText;
+    }
+
+    .text-secondary {
+      color: GrayText;
+    }
+
+    .accent-primary {
+      color: LinkText;
+    }
+
+    .accent-secondary {
+      color: LinkText;
+    }
+  }
 }

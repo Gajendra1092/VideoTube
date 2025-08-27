@@ -81,14 +81,14 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!avatar) {
         avatarUrl = 'https://via.placeholder.com/150x150.png?text=Avatar';
     } else {
-        avatarUrl = avatar.url;
+        avatarUrl = avatar.secure_url || avatar.url; // Use secure_url for HTTPS
     }
     
 
     const user = await User.create({
         fullName,
         avatar: avatarUrl,
-        coverImage: coverImage?.url || "",
+        coverImage: coverImage?.secure_url || coverImage?.url || "",
         email,
         password,
         username: username.toLowerCase()
