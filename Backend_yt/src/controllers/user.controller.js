@@ -110,7 +110,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Only secure in production
-        sameSite: 'lax', // Allow cross-site requests
+        sameSite: "none", // Allow cross-site requests
     } // making this cookie can only be modified only from server not from frontend.
 
     return res.status(201)
@@ -163,7 +163,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Only secure in production
-        sameSite: 'lax', // Allow cross-site requests
+        sameSite: "none", // Allow cross-site requests
     } // making this cookie can only be modified only from server not from frontend.
 
     return res.status(200).cookie("accessToken", accessToken, options).cookie("refreshToken", refreshToken, options).json(new ApiResponse(200,{ loggedInUser,refreshToken,accessToken}, "User logged in successfully")); // sending accesstoken and refresh token in api response as well because it is a good practice and can be used in mobile applications.
@@ -189,7 +189,7 @@ const logOutUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: "none",
     }
 
     return res.status(200).clearCookie("accessToken", options).clearCookie("refreshToken", options).json(new ApiResponse(200, {}, "User logged out successfully"));
@@ -217,7 +217,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         const options = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: "none",
         }
     
         const {accessToken, new_refreshToken} = await generateRefreshTokenandAccessToken(user._id); 
@@ -559,7 +559,7 @@ const googleAuth = asyncHandler(async (req, res) => {
         const options = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: "none",
         };
 
         return res
@@ -610,7 +610,7 @@ const googleAuth = asyncHandler(async (req, res) => {
         const options = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: "none",
         };
 
         return res
