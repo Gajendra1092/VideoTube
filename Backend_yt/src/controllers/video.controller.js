@@ -72,13 +72,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
 
     const totalVideos = await Video.countDocuments(matchFilter);
 
-    // Debug logging
-    console.log('🎬 getAllVideos - Sample video data:', video.length > 0 ? {
-        id: video[0]._id,
-        title: video[0].title,
-        view: video[0].view,
-        owner: video[0].owner
-    } : 'No videos found');
+    // Debug logging (removed sensitive data)
 
     return res.status(200).json(new ApiResponse(200, {
         video,
@@ -350,7 +344,7 @@ const incrementViewCount = asyncHandler(async (req, res) => {
         throw new ApiError(404, "Video not found");
     }
 
-    console.log(`🧪 Test: Incremented view count for video ${videoId} by ${count}. New count: ${video.view}`);
+    // View count incremented successfully
 
     return res.status(200).json(new ApiResponse(200, {
         videoId: video._id,

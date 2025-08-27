@@ -21,7 +21,7 @@ const recordVideoView = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Authentication required to record video view");
     }
 
-    console.log('🎬 Recording video view:', { videoId, userId: String(userId) });
+    // Recording video view for authenticated user
 
     if (!videoId || !mongoose.Types.ObjectId.isValid(videoId)) {
         throw new ApiError(400, "Valid video ID is required");
@@ -62,7 +62,7 @@ const recordVideoView = asyncHandler(async (req, res) => {
             { new: true }
         ).select('_id view');
 
-        console.log('✅ New video view recorded successfully');
+        // New video view recorded successfully
 
         return res.status(201).json(
             new ApiResponse(201, {

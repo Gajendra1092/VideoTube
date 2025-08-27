@@ -53,7 +53,7 @@ export const useAuthStore = create<ExtendedAuthState>()(
           }
         } catch (error: any) {
           set({ isLoading: false });
-          console.error('Login error:', error);
+          // Login error handled
           throw error;
         }
       },

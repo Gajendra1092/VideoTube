@@ -60,14 +60,7 @@ const getVideoComments = asyncHandler(async (req, res) => {
             replies: repliesWithLikes
         }
     }))
-    console.log(`📝 Comments fetched for video ${videoId}:`, {
-        count: commentsWithDetails.length,
-        sampleComment: commentsWithDetails[0] ? {
-            id: commentsWithDetails[0]._id,
-            hasOwner: !!commentsWithDetails[0].owner,
-            ownerData: commentsWithDetails[0].owner
-        } : null
-    });
+    // Comments fetched successfully
 
     res.status(200).json(new ApiResponse(200, commentsWithDetails, "Comments fetched successfully!"))
 

@@ -304,13 +304,13 @@ const getLikedVideos = asyncHandler(async (req, res) => {
         throw new ApiError(400,"Give user info!")
     }
 
-    console.log('🔄 Fetching liked videos for user:', userId);
+    // Fetching liked videos for authenticated user
 
     const likedVideos = await Like.aggregate([
         {
             $match: {
                 likedBy: new mongoose.Types.ObjectId(userId),
-                video: { $exists: true },
+                video: { $exists: true, $ne: null },
                 type: 'like'
             }
         },
@@ -323,11 +323,15 @@ const getLikedVideos = asyncHandler(async (req, res) => {
             }
         },
         {
-            $unwind: '$video'
+            $unwind: {
+                path: '$video',
+                preserveNullAndEmptyArrays: false
+            }
         },
         {
             $match: {
-                'video.isPublished': true
+                'video.isPublished': true,
+                'video._id': { $exists: true }
             }
         },
         {
@@ -339,7 +343,10 @@ const getLikedVideos = asyncHandler(async (req, res) => {
             }
         },
         {
-            $unwind: '$video.owner'
+            $unwind: {
+                path: '$video.owner',
+                preserveNullAndEmptyArrays: false
+            }
         },
         {
             $project: {
@@ -376,11 +383,23 @@ const getLikedVideos = asyncHandler(async (req, res) => {
     // Get total count for pagination
     const totalCount = await Like.countDocuments({
         likedBy: new mongoose.Types.ObjectId(userId),
-        video: { $exists: true },
+        video: { $exists: true, $ne: null },
         type: 'like'
     });
 
-    console.log('✅ Liked videos fetched successfully:', { count: likedVideos.length, total: totalCount });
+    // Debug: Log aggregation results for troubleshooting
+    if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 Debug - Liked videos query results:', {
+            userId: userId,
+            totalFound: likedVideos.length,
+            totalCount: totalCount,
+            sampleResult: likedVideos[0] ? {
+                hasVideo: !!likedVideos[0].video,
+                videoTitle: likedVideos[0].video?.title,
+                likedAt: likedVideos[0].likedAt
+            } : null
+        });
+    }
 
     return res.status(200).json(new ApiResponse(200, {
         videos: likedVideos,
@@ -402,7 +421,7 @@ const getVideoLikeStatus = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Video ID is required!");
     }
 
-    console.log('🔄 Fetching video like status:', { videoId, userId });
+    // Fetching video like status
 
     // Get like and dislike counts
     const [likeCount, dislikeCount, userInteraction] = await Promise.all([
